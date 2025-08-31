@@ -86,7 +86,7 @@ int deletar(){
 }
 
 int main(){
-    system("chcp 1252 > nul"); //habilita os caracteres que faltam no terminal windows
+    system("chcp 1252 > nul"); //habilita os caracteres que faltam no terminal windows.
     setlocale(LC_ALL, "Portuguese_Brazil"); //define a linguagem
 
     int opcao=0; //opção escolhida pelo usuário
