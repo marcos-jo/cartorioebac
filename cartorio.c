@@ -4,6 +4,7 @@
 #include <string.h> //biblioteca que cuida das strings
 
 int registro(){
+
     printf("*** Registro ***\n\n");
     char nome[50];
     char cpf[40];
@@ -40,6 +41,7 @@ int registro(){
 }
 
 int consulta(){
+
     char cpf[40];
     char conteudo[200];
 
@@ -64,6 +66,7 @@ int consulta(){
 }
 
 int deletar(){
+
     char cpf[40];
 
     printf("*** Deletar Registro ***\n\nDigite o CPF 'somente números':\n\n");
@@ -86,49 +89,70 @@ int deletar(){
 }
 
 int main(){
+    
     system("chcp 1252 > nul"); //habilita os caracteres que faltam no terminal windows.
     setlocale(LC_ALL, "Portuguese_Brazil"); //define a linguagem
 
     int opcao=0; //opção escolhida pelo usuário
 
-    while(1){
+    char senhadigitada[10]="a"; //senha do login
+    char senhaadm[10]="admin"; //senha correta
+
+    printf("Cartório EBAC\n\nDigite a senha para entrar no sistema: ");
+    scanf("%s", &senhadigitada);
+
+    if(strcmp(senhadigitada, senhaadm) == 0){ //compara as senhas
         system("cls"); //limpa a tela
+        printf("Senha correta, entrando no sistema...\n");
+        system("pause");
 
-        printf("*** Meu cartório *** \n\n"); //inicio do menu
-        printf("Menu. Escolha a opção desejada: \n\n");
-        printf("\t1 - Registrar pessoas. \n");
-        printf("\t2 - Consultar pessoas. \n");
-        printf("\t3 - Deletar registro. \n");
-        printf("\t0 - Sair do programa. \n\n");
-        printf("Opção: "); //fim do menu
+        while(1){
+            system("cls"); //limpa a tela
 
-        scanf("%d", &opcao); //armazena a escolha do usuário
-        while ((getchar()) != '\n'); // limpa o enter do bufer que tava causando um bug chato de ignorar a primeira pergunta nas funções do menu 
+            printf("*** Meu cartório *** \n\n"); //inicio do menu
+            printf("Menu. Escolha a opção desejada: \n\n");
+            printf("\t1 - Registrar pessoas. \n");
+            printf("\t2 - Consultar pessoas. \n");
+            printf("\t3 - Deletar registro. \n");
+            printf("\t0 - Sair do programa. \n\n");
+            printf("Opção: "); //fim do menu
 
-        system("cls"); //limpa a tela
+            scanf("%d", &opcao); //armazena a escolha do usuário
+            while ((getchar()) != '\n'); // limpa o enter do bufer que tava causando um bug chato de ignorar a primeira pergunta nas funções do menu 
 
-        switch(opcao){ //decide o que acontece dependendo da opção escolhida
-            case 1:
-            registro();
-            break;
+            system("cls"); //limpa a tela
 
-            case 2:
-            consulta();
-            break;
+            switch(opcao){ //decide o que acontece dependendo da opção escolhida
 
-            case 3:
-            deletar();
-            break;
+                case 1:
+                registro();
+                break;
 
-            case 0:
-            printf("Encerrando o programa... \n");
-            system("pause");
-            return 0;
+                case 2:
+                consulta();
+                break;
 
-            default:
-            printf("Esta opção não está disponível \n");
-            system("pause");
-            break;
+                case 3:
+                deletar();
+                break;
+
+                case 0:
+                printf("Encerrando o programa... \n");
+                system("pause");
+                return 0;
+
+                default:
+                printf("Esta opção não está disponível \n");
+                system("pause");
+                break;
+            }
         }
     }
+    else{
+        printf("\nSenha incorreta, encerrando o programa...\n");
+        system("pause");
+        return 0;
+    }
+
+
 }
